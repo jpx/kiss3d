@@ -109,6 +109,9 @@ impl Material for ObjectMaterial {
             verify!(ctxt.active_texture(Context::TEXTURE0));
             verify!(ctxt.bind_texture(Context::TEXTURE_2D, Some(&*data.texture())));
 
+            verify!(ctxt.enable(Context::BLEND));
+            verify!(ctxt.blend_func(Context::SRC_ALPHA, Context::ONE_MINUS_SRC_ALPHA));
+
             if data.surface_rendering_active() {
                 self.color.upload(data.color());
 
